@@ -57,3 +57,40 @@ Notes
 - Some browsers may block cross‑origin requests from `file://` URLs. Use a local server.
 - The app requests a solution only when needed (hint/solve/explain) and uses the API for generation/evaluation as required.
 
+End-to-End Tests (Playwright)
+-----------------------------
+This repo includes Playwright tests that run against a tiny built-in static server (no dependencies).
+
+Setup
+- Requires Node.js 18+.
+- Install dev deps and Playwright browsers:
+  - `npm install`
+  - `npm run pw:install`
+
+Run tests
+- `npm test` – starts the static server and runs tests headlessly.
+- `npm run test:ui` – Playwright UI mode.
+- `npm run pw:report` – open the last HTML report.
+
+Record new tests
+- Start the local server: `npm start`
+- In another terminal: `npm run codegen`
+  - This opens a browser to record actions and generate a test.
+
+Where things are
+- Config: `playwright.config.js` (launches `node scripts/serve.js -p 5173`)
+- Static server: `scripts/serve.js`
+- Tests: `tests/sudoku.spec.js`
+
+Notes
+- Tests stub the Sudoku API network calls (generate/solve/health) with known responses, so they work offline and deterministically.
+
+Continuous Integration (GitHub Actions)
+---------------------------------------
+- Workflow file: `.github/workflows/ci.yml`
+- Triggers: on every push and via manual dispatch.
+- What it does: installs Node + Playwright, starts the static server (via Playwright config), runs tests, and uploads the HTML report as an artifact.
+
+Manual run
+- Go to GitHub → Actions → CI → Run workflow.
+- After completion, download the “playwright-report” artifact.

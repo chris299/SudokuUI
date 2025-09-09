@@ -1,0 +1,19 @@
+{
+  "name": "sudoku-ui-vanilla",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Vanilla JS Sudoku app with Playwright tests.",
+  "scripts": {
+    "start": "node scripts/serve.js -p 5173",
+    "dev": "node scripts/serve.js -p 5173",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "pw:install": "playwright install --with-deps",
+    "pw:report": "playwright show-report",
+    "codegen": "playwright codegen http://localhost:5173"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.46.0"
+  }
+}
+
