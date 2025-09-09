@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sudoku UI</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <h1>Sudoku</h1>
+      <div class="header-actions">
+        <label class="api-label">
+          API:
+          <input id="apiBaseInput" type="url" placeholder="https://sudokus-api.netlify.app" />
+        </label>
+        <button id="healthCheckBtn" title="Check API status">Health</button>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="controls">
+        <div class="row">
+          <label for="difficulty">Difficulty</label>
+          <select id="difficulty">
+            <option value="easy">Easy</option>
+            <option value="medium" selected>Medium</option>
+            <option value="hard">Hard</option>
+            <option value="expert">Expert</option>
+          </select>
+          <button id="newPuzzleBtn">New Puzzle</button>
+          <button id="enterModeBtn" data-active="false">Enter Mode</button>
+          <button id="clearBtn">Clear</button>
+        </div>
+        <div class="row">
+          <button id="hintBtn">Hint</button>
+          <button id="solveBtn">Solve</button>
+          <button id="explainBtn">Explain</button>
+          <button id="evaluateBtn">Evaluate</button>
+        </div>
+      </section>
+
+      <section class="board-section">
+        <div id="sudokuBoard" class="board" role="grid" aria-label="Sudoku board"></div>
+        <div id="boardOverlay" class="board-overlay hidden"></div>
+      </section>
+
+      <section class="info">
+        <div class="status-line">
+          <span id="statusText">Ready.</span>
+        </div>
+        <details id="explainDetails" class="explain" open>
+          <summary>Solution Explanation</summary>
+          <ol id="explainList"></ol>
+        </details>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <span>
+        Uses Sudoku API – see docs/openapi.yaml. No frameworks, just vanilla JS.
+      </span>
+    </footer>
+
+    <script src="js/sudoku.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+  </html>
+
